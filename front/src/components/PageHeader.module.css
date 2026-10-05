@@ -1,0 +1,86 @@
+/* En-tête de page : titre, accroche, actions optionnelles, filet de séparation. */
+
+.header {
+  position: relative;
+  margin-bottom: 4rem;
+  padding: 0 0 2.5rem;
+  /* Filet en pointillés, comme une ligne de score */
+  background: repeating-linear-gradient(90deg, var(--line-strong) 0 6px, transparent 6px 12px) 0 100% / 100% 2px
+    no-repeat;
+}
+
+/* Le contenu passe devant le décor éventuel posé en ::after par la page. */
+.header > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Le titre s'écrit caractère par caractère après l'allumage, suivi d'un curseur clignotant. */
+.title {
+  display: inline-block;
+  margin: 0 0 1.1rem;
+  max-width: 16ch;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2rem, 5.6vw, 3.9rem);
+  line-height: 1.05;
+  color: var(--ivory);
+  text-shadow:
+    3px 3px 0 var(--bordeaux),
+    6px 6px 0 var(--bordeaux-deep);
+  animation: type-in 1000ms steps(18) 450ms both;
+}
+
+.title::after {
+  content: '_';
+  margin-left: 0.1em;
+  color: var(--accent);
+  text-shadow: none;
+  animation: blink 900ms steps(1) infinite;
+}
+
+.subtitle {
+  composes: riseIn from '../style/page.module.css';
+
+  margin: 0;
+  max-width: 46ch;
+  font-size: 1.05rem;
+  font-weight: 400;
+  color: var(--ivory-dim);
+  animation-delay: 1300ms;
+}
+
+.actions {
+  composes: riseIn from '../style/page.module.css';
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 2rem;
+  animation-delay: 1450ms;
+
+  /* Contrat Button : les actions d'en-tête sont plus généreuses. */
+  --btn-padding: 0.75rem 1.4rem;
+}
+
+@media (max-width: 768px) {
+  .header {
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+  }
+}
+
+@keyframes type-in {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(-0.2em -1em -0.4em -0.2em);
+  }
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}

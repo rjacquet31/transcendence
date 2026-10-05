@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=Chivo:wght@300;400;500;700&display=swap');
+
+/* Borne 1984 : cabinet d'arcade en bois, enseigne à ampoules, écran cathodique ; lumière chaude et ombres dures, pas de néon. */
+:root {
+  /* Bois du cabinet, du plus sombre au plus clair */
+  --wood-dark: #22160e;
+  --wood: #3a2618;
+  --wood-light: #4d3321;
+
+  /* Intérieur de l'écran et surfaces posées dessus (champs, encarts) */
+  --screen: #1b1512;
+  --panel: #2a1f19;
+  --panel-hi: #34271f;
+
+  /* Bordeaux de la façade : enseigne, cartes, élément actif */
+  --bordeaux: #5b1a24;
+  --bordeaux-deep: #3e1018;
+
+  /* Moutarde : accent et lumière des ampoules, rempli pour les boutons, éclairci pour le texte. */
+  --accent: #d9a441;
+  --accent-hot: #e4b152;
+  --accent-bright: #ebc073;
+  --accent-deep: #a87a24;
+
+  /* Réservé à ce qui refuse ou échoue : erreurs, refus, défaites. */
+  --danger: #e0796b;
+
+  /* Réservé à ce qui confirme : accepter, être en ligne, victoire. */
+  --green: #6f9a4f;
+  --green-bright: #8fbf6a;
+  --live: #8fbf6a;
+
+  /* Ivoire du texte, et sa version atténuée */
+  --ivory: #efe6d2;
+  --ivory-dim: #b9ae98;
+
+  /* Carte = façade bordeaux d'une mini-borne */
+  --card: var(--bordeaux);
+  --card-ink: #efe6d2;
+  --card-ink-dim: #cdbfa6;
+
+  --line: rgba(239, 230, 210, 0.09);
+  --line-strong: rgba(239, 230, 210, 0.18);
+  --card-line: rgba(239, 230, 210, 0.16);
+
+  --font-display: 'Silkscreen', 'Courier New', monospace;
+  --font-body: 'Chivo', system-ui, sans-serif;
+  --font-mono: 'Silkscreen', 'Courier New', monospace;
+
+  --radius: 6px;
+  --radius-card: 12px;
+
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-snap: cubic-bezier(0.5, 1.6, 0.4, 1);
+
+  font-family: var(--font-body);
+  font-weight: 400;
+  color-scheme: dark;
+}

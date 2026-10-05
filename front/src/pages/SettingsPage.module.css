@@ -1,0 +1,69 @@
+.section {
+  margin-top: 2.5rem;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  max-width: 52rem;
+  padding: 1.1rem 1.25rem;
+  background: var(--panel);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+}
+
+.cardDanger {
+  border-color: var(--danger);
+}
+
+.text {
+  margin: 0;
+  max-width: 68ch;
+  font-size: 0.92rem;
+  font-weight: 300;
+  line-height: 1.6;
+  color: var(--ivory-dim);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  align-items: center;
+}
+
+.confirm {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--line-strong);
+}
+
+.label {
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: var(--card-ink-dim);
+}
+
+.strong {
+  font-weight: 600;
+  color: var(--ivory);
+}
+
+.input {
+  max-width: 22rem;
+}
+
+.error {
+  margin: 1rem 0 0;
+  font-size: 0.88rem;
+  color: var(--danger);
+}
+
+.notice {
+  margin: 1rem 0 0;
+  font-size: 0.88rem;
+  color: var(--ivory-dim);
+}

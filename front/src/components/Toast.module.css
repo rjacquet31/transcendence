@@ -1,0 +1,109 @@
+/* La pile de notifications et le rectangle qui la compose. */
+
+/* Colonne ancrée en haut à droite, par-dessus la page. */
+.stack {
+  position: fixed;
+
+  /* Sous la navbar plutôt que par-dessus : elle fait ~3.4rem de haut. */
+  top: 4.5rem;
+  right: 1.25rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+
+  /* Au-dessus de navbar (20), sidebar mobile (10) et menu contextuel (50) ; les modales passent devant via <dialog>. */
+  z-index: 100;
+}
+
+/* Le rectangle qui glisse depuis le bord droit. */
+.toast {
+  width: min(320px, calc(100vw - 2.5rem));
+  padding: 0.85rem 0.95rem 0.9rem;
+  color: var(--ivory);
+  background: var(--wood);
+  border: 1px solid var(--line-strong);
+
+  /* Même accent que les messages d'erreur des modales : un filet rouge à gauche. */
+  border-left: 2px solid var(--accent-hot);
+  border-radius: var(--radius-card);
+  box-shadow: 0 24px 40px -24px rgba(0, 0, 0, 1);
+
+  /* Longhands jamais le raccourci (voir style/page.module.css) ; `prefers-reduced-motion` est géré par style/body.css. */
+  animation-name: slide-in-right;
+  animation-duration: 420ms;
+  animation-timing-function: var(--ease);
+  animation-fill-mode: both;
+}
+
+.head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+
+  /* Contrat Button : la croix est petite. */
+  --btn-padding: 0.15rem 0.4rem;
+  --btn-font-size: 0.78rem;
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 0.92rem;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ivory);
+}
+
+.body {
+  margin: 0.45rem 0 0;
+  font-size: 0.88rem;
+  font-weight: 300;
+  line-height: 1.45;
+  color: var(--card-ink-dim);
+}
+
+/* Accepter / Refuser, côte à côte et de largeur égale. */
+.actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+
+  /* Contrat Button : actions de notification, plus petites qu'un bouton de page. */
+  --btn-padding: 0.4rem 0.7rem;
+  --btn-font-size: 0.82rem;
+}
+
+.actions > span {
+  flex: 1;
+}
+
+/* Button n'a pas de variante verte : on repeint la secondaire par ses variables, comme le footer. */
+.accept {
+  --btn-secondary-color: var(--green-bright);
+  --btn-secondary-border: var(--green);
+  --btn-secondary-bg: rgba(143, 191, 106, 0.1);
+  --btn-secondary-color-hover: var(--ivory);
+  --btn-secondary-border-hover: var(--green-bright);
+  --btn-secondary-bg-hover: rgba(143, 191, 106, 0.18);
+}
+
+.decline {
+  --btn-secondary-color: var(--danger);
+  --btn-secondary-border: var(--danger);
+  --btn-secondary-bg: rgba(224, 121, 107, 0.08);
+  --btn-secondary-color-hover: var(--ivory);
+  --btn-secondary-border-hover: var(--danger);
+  --btn-secondary-bg-hover: rgba(224, 121, 107, 0.16);
+}
+
+/* Le rectangle part hors écran, marge du conteneur comprise, pour que rien ne dépasse avant l'animation. */
+@keyframes slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(calc(100% + 1.25rem));
+  }
+}

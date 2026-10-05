@@ -1,0 +1,141 @@
+/* Coquille commune des modales, tirée par `composes:` : ne jamais écrire une propriété des deux côtés (l'ordre d'injection trancherait). */
+
+/* Le <dialog> natif a ses marges, bordure et fond blanc : on repart de zéro, largeur et rembourrage restent locaux. */
+.shell {
+  margin: auto;
+  color: var(--ivory);
+  background:
+    repeating-linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 0 1px, transparent 1px 3px),
+    radial-gradient(ellipse at 50% 0%, #2e241d, var(--screen) 70%);
+  border: 3px solid var(--accent-deep);
+  border-radius: var(--radius-card);
+  box-shadow:
+    inset 0 0 0 5px var(--bordeaux),
+    inset 0 0 40px rgba(0, 0, 0, 0.6),
+    10px 10px 0 rgba(0, 0, 0, 0.55);
+}
+
+.shell[open] {
+  /* La modale s'allume comme un écran cathodique : un trait, puis l'image. */
+  animation: crt-in 420ms var(--ease);
+}
+
+.shell::backdrop {
+  background: rgba(18, 12, 8, 0.78);
+  backdrop-filter: blur(3px);
+  animation: backdrop-in 300ms ease;
+}
+
+/* Bandeau titre + croix de fermeture. La marge basse reste locale. */
+.head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+
+  /* Contrat Button : la croix est petite. */
+  --btn-padding: 0.25rem 0.5rem;
+  --btn-font-size: 0.85rem;
+}
+
+/* Marge et taille restent locales : elles varient d'une modale à l'autre. */
+.title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--ivory);
+  text-shadow:
+    2px 2px 0 var(--bordeaux),
+    4px 4px 0 var(--bordeaux-deep);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.field {
+  composes: field from './page.module.css';
+}
+
+.label {
+  composes: label from './page.module.css';
+}
+
+.input {
+  width: 100%;
+  padding: 0.6rem 0.75rem;
+  font-family: inherit;
+  font-size: 0.92rem;
+  color: var(--ivory);
+  background: var(--panel);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  box-shadow: inset 0 2px 0 rgba(0, 0, 0, 0.3);
+  transition:
+    border-color 160ms ease,
+    background-color 160ms ease,
+    box-shadow 200ms var(--ease);
+}
+
+.input:hover {
+  border-color: rgba(239, 230, 210, 0.28);
+}
+
+.input:focus {
+  outline: none;
+  background: var(--panel-hi);
+  border-color: var(--accent);
+  box-shadow:
+    inset 0 2px 0 rgba(0, 0, 0, 0.3),
+    3px 3px 0 var(--accent-deep);
+}
+
+/* Champ refusé par le back, placé après `.input` pour gagner sur sa bordure par l'ordre du fichier. */
+.inputError {
+  border-color: var(--danger);
+}
+
+/* Refus global du back, affiché en bloc au-dessus des actions. Marge locale. */
+.globalError {
+  padding: 0.6rem 0.7rem;
+  font-size: 0.82rem;
+  color: var(--danger);
+  background: rgba(224, 121, 107, 0.1);
+  border-left: 2px solid var(--danger);
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+
+/* Boutons de pied de modale, alignés à droite. Marge haute locale. */
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.6rem;
+
+  --btn-padding: 0.6rem 1.1rem;
+  --btn-font-size: 0.9rem;
+}
+
+@keyframes crt-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.9, 0.01);
+    filter: brightness(3);
+  }
+  45% {
+    opacity: 1;
+    transform: scale(1, 0.01);
+    filter: brightness(3);
+  }
+  100% {
+    transform: none;
+    filter: none;
+  }
+}
+
+@keyframes backdrop-in {
+  from {
+    opacity: 0;
+  }
+}

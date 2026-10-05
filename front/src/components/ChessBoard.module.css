@@ -1,0 +1,165 @@
+/* Échiquier 8×8 en ivoire et bois clair : une pièce noire serait invisible sur les bruns du cabinet. */
+
+.board {
+  composes: riseIn from '../style/page.module.css';
+
+  /* Au-dessus des lignes de balayage de l'écran : le plateau doit rester net. */
+  position: relative;
+  z-index: 6;
+
+  /* Pas de vert : `--green` et `--live` ont déjà un sens (accepter, en ligne). */
+  --square-light: #efe6d2;
+  --square-dark: #b58a5a;
+  /* Taille d'une case, identique pour les 64 ; le plateau fait huit fois cette taille. */
+  --square: clamp(2.4rem, 7.6vmin, 4.5rem);
+
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(8, 1fr);
+  /* Taille souhaitée, plafonnée à la colonne : le plateau rétrécit d'un bloc au lieu de déborder. */
+  width: min(calc(var(--square) * 8), 100%);
+  aspect-ratio: 1;
+  /* Fait du plateau l'unité de mesure des pièces (unités `cq*` ci-dessous). */
+  container-type: size;
+  margin-inline: auto;
+  border-radius: var(--radius);
+  overflow: hidden;
+  /* Cadre en bois du plateau, ombre dure comme les bornes */
+  box-shadow:
+    0 0 0 6px var(--wood-light),
+    0 0 0 9px var(--wood-dark),
+    10px 12px 0 9px rgba(0, 0, 0, 0.45);
+}
+
+.square {
+  position: relative;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: none;
+  /* 12.5 cqw = une case ; la pièce en occupe 72 %, à toute taille d'écran. */
+  font-size: 9cqw;
+  line-height: 1;
+  cursor: pointer;
+  transition: filter 160ms ease;
+}
+
+.light {
+  background: var(--square-light);
+}
+
+.dark {
+  background: var(--square-dark);
+}
+
+.square:hover {
+  filter: brightness(1.12);
+}
+
+/* Filet de focus rentré dans la case pour ne pas être rogné par l'`overflow` du plateau. */
+.square:focus-visible {
+  outline: 2px solid var(--accent-bright);
+  outline-offset: -3px;
+  z-index: 2;
+}
+
+/* Départ et arrivée du dernier coup : un voile rouge sous les pièces. */
+.lastMove::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(217, 164, 65, 0.2);
+}
+
+/* Case sélectionnée : un cadre plein, visible sur les deux teintes. */
+.selected::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  box-shadow: inset 0 0 0 3px var(--accent-hot);
+  animation: square-pick 320ms var(--ease) both;
+}
+
+/* Coups possibles : pastille sur case vide, anneau sur case occupée, en rouge du design system. */
+.target::after,
+.capture::after {
+  content: '';
+  position: absolute;
+  pointer-events: none;
+}
+
+.target::after {
+  /* Centrage explicite : 22 % au milieu, donc 39 % de marge de chaque côté. */
+  inset: 39%;
+  background: var(--accent-hot);
+  border-radius: 50%;
+  opacity: 0.75;
+}
+
+.capture::after {
+  inset: 0;
+  box-shadow: inset 0 0 0 4px var(--accent-hot);
+  opacity: 0.8;
+}
+
+.piece {
+  position: relative;
+  color: var(--wood-dark);
+  /* Simple ombre portée : un liseré clair mangerait le contour du glyphe sur ces teintes. */
+  text-shadow: 0 2px 3px rgba(18, 12, 8, 0.35);
+  pointer-events: none;
+}
+
+.white {
+  color: var(--ivory);
+  text-shadow:
+    0 0 1px var(--wood-dark),
+    0 0 2px var(--wood-dark),
+    0 2px 3px rgba(0, 0, 0, 0.5);
+}
+
+.rankLabel,
+.fileLabel {
+  position: absolute;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.04em;
+  opacity: 0.72;
+  pointer-events: none;
+}
+
+.rankLabel {
+  top: 3px;
+  left: 4px;
+}
+
+.fileLabel {
+  right: 5px;
+  bottom: 2px;
+}
+
+/* Les coordonnées se lisent sur la couleur *opposée* à leur case. */
+.light .rankLabel,
+.light .fileLabel {
+  color: var(--square-dark);
+}
+
+.dark .rankLabel,
+.dark .fileLabel {
+  color: var(--square-light);
+}
+
+@keyframes square-pick {
+  from {
+    box-shadow: inset 0 0 0 10px rgba(217, 164, 65, 0.35);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .square,
+  .selected::after,
+  .board {
+    animation: none;
+    transition: none;
+  }
+}

@@ -1,0 +1,80 @@
+/* Propre à la modale d'édition : sa largeur et le champ UUID en lecture seule. */
+
+.dialog {
+  composes: shell from '../style/dialog.module.css';
+
+  width: min(460px, calc(100vw - 2rem));
+  max-height: calc(100vh - 3rem);
+  padding: 1.6rem 1.5rem 1.5rem;
+  overflow: auto;
+}
+
+.head {
+  composes: head from '../style/dialog.module.css';
+
+  margin-bottom: 1.4rem;
+}
+
+.title {
+  composes: title from '../style/dialog.module.css';
+
+  margin: 0;
+  font-size: 1.55rem;
+}
+
+.form {
+  composes: form from '../style/dialog.module.css';
+}
+
+.field {
+  composes: field from '../style/dialog.module.css';
+}
+
+.label {
+  composes: label from '../style/dialog.module.css';
+}
+
+/* UUID : gabarit d'un champ sans bordure vive ni curseur texte, pour montrer qu'il n'est pas saisissable. */
+.readonly {
+  margin: 0;
+  padding: 0.6rem 0.75rem;
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  white-space: nowrap;
+  color: var(--ivory-dim);
+  background: rgba(239, 230, 210, 0.03);
+  border: 1px dashed var(--line);
+  border-radius: var(--radius);
+}
+
+.input {
+  composes: input from '../style/dialog.module.css';
+}
+
+/* Le select porte exactement le même habillage qu'un champ de saisie. */
+.select {
+  composes: input from '../style/dialog.module.css';
+}
+
+.globalError {
+  composes: globalError from '../style/dialog.module.css';
+
+  margin: 0;
+}
+
+.actions {
+  composes: actions from '../style/dialog.module.css';
+
+  margin-top: 0.6rem;
+}
+
+@media (max-width: 430px) {
+  .dialog {
+    padding: 1.3rem 1.1rem 1.2rem;
+  }
+
+  .title {
+    font-size: 1.35rem;
+  }
+}

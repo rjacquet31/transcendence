@@ -1,0 +1,76 @@
+/* Propre à la promotion : boîte courte, quatre pièces en ligne ; le reste vient de la coquille partagée. */
+
+.dialog {
+  composes: shell from '../style/dialog.module.css';
+
+  width: min(360px, calc(100vw - 2rem));
+  padding: 1.5rem 1.4rem 1.3rem;
+}
+
+.head {
+  composes: head from '../style/dialog.module.css';
+
+  margin-bottom: 0.4rem;
+}
+
+.title {
+  composes: title from '../style/dialog.module.css';
+
+  margin: 0;
+  font-size: 1.4rem;
+}
+
+.note {
+  margin: 0 0 1.1rem;
+  font-size: 0.78rem;
+  font-weight: 300;
+  color: var(--ivory-dim);
+}
+
+.choices {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+}
+
+/* Bouton propre à la modale (case de choix haute, glyphe centré) plutôt que `Button`. */
+.choice {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.7rem 0.3rem 0.55rem;
+  font-family: inherit;
+  color: var(--ivory);
+  background: var(--panel);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition:
+    border-color 160ms ease,
+    background-color 160ms ease;
+}
+
+.choice:hover {
+  background: var(--panel-hi);
+  border-color: var(--accent-hot);
+}
+
+.piece {
+  font-size: 1.9rem;
+  line-height: 1;
+  /* Les noirs prennent le gris de la modale : le noir du plateau s'y perdrait. */
+  color: var(--ivory-dim);
+}
+
+.white {
+  color: var(--ivory);
+}
+
+.name {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--card-ink-dim);
+}

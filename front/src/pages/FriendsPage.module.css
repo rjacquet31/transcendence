@@ -1,0 +1,62 @@
+.hint {
+  margin: 0 0 0.9rem;
+  font-size: 0.85rem;
+  font-weight: 300;
+  color: var(--ivory-dim);
+}
+
+.section {
+  margin-top: 3rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  max-width: 34rem;
+}
+
+.formRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  align-items: center;
+}
+
+.input {
+  flex: 1 1 14rem;
+}
+
+.error {
+  margin: 0.4rem 0 0;
+  font-size: 0.85rem;
+  color: var(--danger);
+}
+
+.notice {
+  margin: 0.4rem 0 0;
+  font-size: 0.85rem;
+  color: var(--ivory-dim);
+}
+
+.rowActions {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 0.4rem;
+
+  --btn-padding: 0.35rem 0.7rem;
+  --btn-font-size: 0.8rem;
+}
+
+.user {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-width: 0;
+}
+
+.userName {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

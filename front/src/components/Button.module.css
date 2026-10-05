@@ -1,0 +1,157 @@
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  padding: var(--btn-padding, 0.6rem 1rem);
+  font-family: var(--font-body);
+  font-size: var(--btn-font-size, 0.9rem);
+  font-weight: var(--btn-weight, 500);
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  color: var(--ivory);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  cursor: pointer;
+  overflow: hidden;
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease,
+    box-shadow 160ms ease,
+    transform 120ms ease;
+}
+
+.btn:active:not(:disabled) {
+  transform: translateY(2px);
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.full {
+  width: 100%;
+}
+
+/* Soulignement tracé de gauche à droite, inerte sauf si un parent pose --btn-underline: 1. */
+.btn::after {
+  content: '';
+  position: absolute;
+  left: 0.6rem;
+  right: 0.6rem;
+  bottom: 0.25rem;
+  height: 1px;
+  background: var(--accent-bright);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 260ms var(--ease);
+  pointer-events: none;
+}
+
+.btn:hover::after,
+.btn:focus-visible::after {
+  transform: scaleX(var(--btn-underline, 0));
+}
+
+/* L'action principale : un bouton de borne moutarde qui s'enfonce au clic. */
+.primary {
+  color: var(--wood-dark);
+  background: var(--accent);
+  font-family: var(--font-display);
+  font-weight: 400;
+  border-radius: 999px;
+  box-shadow:
+    0 4px 0 var(--accent-deep),
+    0 6px 0 var(--wood-dark);
+  transition:
+    background-color 160ms ease,
+    box-shadow 90ms ease-out,
+    transform 90ms ease-out;
+}
+
+.primary:hover:not(:disabled) {
+  background: var(--accent-hot);
+  transform: translateY(-1px);
+  box-shadow:
+    0 5px 0 var(--accent-deep),
+    0 7px 0 var(--wood-dark);
+}
+
+.primary:active:not(:disabled) {
+  transform: translateY(4px);
+  box-shadow:
+    0 0 0 var(--accent-deep),
+    0 2px 0 var(--wood-dark);
+}
+
+/* Reflet qui traverse le bouton au survol */
+.primary::before {
+  content: '';
+  position: absolute;
+  top: -60%;
+  bottom: -60%;
+  left: -40%;
+  width: 34%;
+  background: linear-gradient(90deg, transparent, rgba(255, 245, 220, 0.45), transparent);
+  transform: translateX(-260%) skewX(-18deg);
+  transition: transform 620ms var(--ease);
+  pointer-events: none;
+}
+
+.primary:hover:not(:disabled)::before {
+  transform: translateX(560%) skewX(-18deg);
+}
+
+.secondary {
+  border-width: 2px;
+  color: var(--btn-secondary-color, var(--ivory));
+  border-color: var(--btn-secondary-border, var(--line-strong));
+  background: var(--btn-secondary-bg, rgba(239, 230, 210, 0.03));
+}
+
+.secondary:hover:not(:disabled) {
+  color: var(--btn-secondary-color-hover, var(--ivory));
+  border-color: var(--btn-secondary-border-hover, var(--accent-bright));
+  background: var(--btn-secondary-bg-hover, rgba(217, 164, 65, 0.08));
+}
+
+.ghost {
+  color: var(--ivory-dim);
+  border-radius: 999px;
+}
+
+.ghost:hover:not(:disabled) {
+  color: var(--ivory);
+  border-color: var(--line-strong);
+  background: var(--btn-ghost-bg-hover, rgba(239, 230, 210, 0.06));
+}
+
+.nav {
+  justify-content: flex-start;
+  padding: var(--btn-padding, 0.5rem 0.8rem);
+  color: var(--btn-nav-color, var(--ivory-dim));
+  font-weight: var(--btn-nav-weight, 400);
+  overflow: visible;
+}
+
+.nav:hover:not(:disabled) {
+  color: var(--ivory);
+  background: transparent;
+}
+
+/* Connexion 42 : fond blanc, texte noir — les couleurs de l'intra. */
+.ft42 {
+  color: #000;
+  background: #fff;
+  border-color: #fff;
+  font-weight: 600;
+}
+
+.ft42:hover:not(:disabled) {
+  background: #e8e8e8;
+  border-color: #e8e8e8;
+}

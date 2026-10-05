@@ -1,0 +1,329 @@
+.table {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+/* Phase et chrono : la première chose qu'on lit en revenant sur l'onglet. */
+.status {
+  composes: riseIn from '../style/page.module.css';
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.9rem 1.2rem;
+  background: var(--ink-800);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+}
+
+.phase {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--bone);
+}
+
+.meta {
+  margin: 0.15rem 0 0;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--mute);
+}
+
+.timer {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 2rem;
+  color: var(--bone);
+}
+
+.timerLow {
+  color: var(--red-bright);
+}
+
+/* Le mot secret : une carte retournée, face visible pour soi seul. */
+.secret {
+  composes: riseIn from '../style/page.module.css';
+
+  padding: 1.1rem 1.2rem;
+  background: var(--card);
+  border: 1px solid var(--card-line);
+  border-radius: var(--radius-card);
+  animation-delay: 80ms;
+}
+
+.secretLabel {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--card-ink-dim);
+}
+
+.secretWord {
+  display: block;
+  margin: 0.2rem 0 0.35rem;
+  padding: 0;
+  font-family: var(--font-display);
+  font-size: 2.4rem;
+  letter-spacing: 0.03em;
+  text-align: left;
+  text-transform: uppercase;
+  color: var(--card-ink);
+  overflow-wrap: anywhere;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.secretWord:focus-visible {
+  outline: 2px solid var(--red-bright);
+  outline-offset: 2px;
+}
+
+.secretHidden {
+  color: var(--card-ink-dim);
+}
+
+.eliminatedBanner {
+  margin: 0.6rem 0 0;
+  padding: 0.45rem 0.7rem;
+  font-size: 0.85rem;
+  background: rgba(200, 22, 29, 0.14);
+  border-left: 2px solid var(--red-hot);
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+
+.hint {
+  margin: 0;
+  font-size: 0.82rem;
+  font-weight: 300;
+  color: var(--mute);
+}
+
+.action {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.prompt {
+  margin: 0;
+  padding: 0.6rem 0.8rem;
+  background: rgba(200, 22, 29, 0.12);
+  border-left: 2px solid var(--red-hot);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  font-size: 0.92rem;
+  color: var(--bone);
+}
+
+.wordForm {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.wordLabel {
+  font-weight: 500;
+  color: var(--bone);
+}
+
+.wordRow {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.input {
+  composes: input from '../style/dialog.module.css';
+}
+
+.players {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 0.6rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.player {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  width: 100%;
+  min-height: 4.2rem;
+  padding: 0.7rem 0.8rem;
+  font: inherit;
+  text-align: left;
+  color: var(--bone);
+  background: var(--ink-800);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  transition:
+    border-color 160ms ease,
+    background-color 160ms ease,
+    transform 120ms ease;
+}
+
+.speaking {
+  border-color: var(--red-hot);
+  box-shadow: 0 0 0 1px var(--red-hot) inset;
+}
+
+.out {
+  opacity: 0.55;
+}
+
+.votable {
+  cursor: pointer;
+}
+
+.votable:hover:not(:disabled) {
+  background: var(--ink-700);
+  border-color: var(--red-bright);
+  transform: translateY(-1px);
+}
+
+.playerName {
+  font-weight: 500;
+  overflow-wrap: anywhere;
+}
+
+.you {
+  font-weight: 300;
+  color: var(--mute);
+}
+
+.playerState {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+}
+
+.role,
+.tagMuted,
+.voted {
+  padding: 0.08rem 0.45rem;
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: 999px;
+}
+
+.role {
+  color: #fff;
+  background: var(--red);
+}
+
+.tagMuted {
+  color: var(--card-ink-dim);
+  border: 1px solid var(--line-strong);
+}
+
+.voted {
+  color: var(--void);
+  background: var(--green-bright);
+}
+
+.blockTitle {
+  margin: 0 0 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--mute);
+}
+
+.clues {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 0.8rem;
+}
+
+.clueRound {
+  padding: 0.7rem 0.8rem;
+  background: var(--ink-800);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.clueRoundTitle {
+  margin: 0 0 0.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--mute);
+}
+
+.clueList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.clue {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  font-size: 0.88rem;
+}
+
+.clueAuthor {
+  color: var(--card-ink-dim);
+}
+
+.clueWord {
+  font-weight: 500;
+  color: var(--bone);
+  overflow-wrap: anywhere;
+}
+
+/* Fin de partie : bandeau plein, comme la fin d'une partie d'échecs. */
+.result {
+  composes: riseIn from '../style/page.module.css';
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.6rem;
+  padding: 1.2rem;
+  background: var(--ink-800);
+  border: 1px solid var(--red-hot);
+  border-radius: var(--radius-card);
+}
+
+.resultTitle {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--bone);
+}
+
+.resultMine {
+  margin: 0;
+  font-weight: 500;
+  color: var(--bone);
+}
+
+.words {
+  margin: 0;
+  color: var(--card-ink-dim);
+}
+
+.words strong {
+  color: var(--bone);
+}

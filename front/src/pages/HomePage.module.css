@@ -1,0 +1,8 @@
+/* L'écran de la borne sert de décor : plus de damier en fond de hero. */
+.heroDecor {
+  position: relative;
+}
+
+.gameGrid {
+  composes: cardGrid from '../style/page.module.css';
+}

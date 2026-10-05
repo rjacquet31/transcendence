@@ -1,0 +1,162 @@
+/* Ce qui est propre à la modale d'authentification : sa largeur, ses onglets et
+   l'erreur sous un champ. Tout le reste vient de la coquille partagée. */
+
+.dialog {
+  composes: shell from '../style/dialog.module.css';
+
+  width: min(420px, calc(100vw - 2rem));
+  max-height: calc(100vh - 3rem);
+  padding: 1.6rem 1.5rem 1.5rem;
+  overflow: auto;
+}
+
+.head {
+  composes: head from '../style/dialog.module.css';
+
+  margin-bottom: 1.1rem;
+}
+
+.title {
+  composes: title from '../style/dialog.module.css';
+
+  margin: 0;
+  font-size: 1.55rem;
+}
+
+/* Onglets : un simple filet sous l'actif, pas de pilule. */
+.tabs {
+  display: flex;
+  gap: 1.4rem;
+  margin-bottom: 1.4rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.tab {
+  position: relative;
+  padding: 0 0 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ivory-dim);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 160ms ease;
+}
+
+.tab::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 2px;
+  background: var(--accent-hot);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 240ms var(--ease);
+}
+
+.tab:hover {
+  color: var(--ivory);
+}
+
+/* Après `.tab` : à spécificité égale, c'est l'ordre qui tranche. */
+.tabActive {
+  color: var(--ivory);
+}
+
+.tabActive::after {
+  transform: scaleX(1);
+}
+
+.form {
+  composes: form from '../style/dialog.module.css';
+}
+
+.field {
+  composes: field from '../style/dialog.module.css';
+}
+
+.label {
+  composes: label from '../style/dialog.module.css';
+}
+
+.input {
+  composes: input from '../style/dialog.module.css';
+}
+
+.inputError {
+  composes: inputError from '../style/dialog.module.css';
+}
+
+.error {
+  margin: 0;
+  font-size: 0.78rem;
+  color: var(--danger);
+}
+
+/* Lien discret mais repérable : moutarde soulignée, aligné sous le mot de passe. */
+.forgot {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: -0.3rem;
+}
+
+.forgot a {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  color: var(--accent-bright);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 160ms ease;
+}
+
+.forgot a:hover {
+  color: var(--accent-hot);
+}
+
+.globalError {
+  composes: globalError from '../style/dialog.module.css';
+
+  margin: 0;
+}
+
+.hint {
+  margin: 0;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--ivory-dim);
+}
+
+.success {
+  margin: 0;
+  padding: 0.6rem 0.7rem;
+  font-size: 0.82rem;
+  color: var(--green-bright);
+  background: rgba(143, 191, 106, 0.1);
+  border-left: 2px solid var(--green-bright);
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+
+.submit {
+  display: grid;
+  gap: 0.55rem;
+  margin-top: 0.4rem;
+
+  /* Contrat Button : l'action de validation est plus généreuse. */
+  --btn-padding: 0.7rem 1.2rem;
+  --btn-font-size: 0.92rem;
+}
+
+@media (max-width: 430px) {
+  .dialog {
+    padding: 1.3rem 1.1rem 1.2rem;
+  }
+
+  .title {
+    font-size: 1.35rem;
+  }
+}

@@ -1,0 +1,130 @@
+.shell {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.body {
+  display: flex;
+  flex: 1;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px;
+  position: relative;
+}
+
+/* L'écran de la borne : tube bombé, cadre noir, lignes de balayage par-dessus. */
+.main {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  width: 100%;
+  max-width: 1080px;
+  min-height: calc(100vh - 140px);
+  margin: 0 auto;
+  padding: 3.5rem 2.5rem 4rem;
+  border-radius: 28px / 22px;
+  background: radial-gradient(ellipse at 50% 30%, #2a211b 0%, var(--screen) 60%, #0e0a08 100%);
+  box-shadow:
+    inset 0 0 70px rgba(0, 0, 0, 0.75),
+    inset 0 0 0 1px rgba(239, 230, 210, 0.06),
+    0 0 0 12px #120c08,
+    0 0 0 14px #2a1d13,
+    0 10px 0 14px var(--wood-dark);
+  /* `backwards` et pas `both` : sinon transform/filter restent et les menus fixed s'y accrochent. */
+  animation: crt-on 650ms var(--ease) backwards;
+}
+
+/* Lignes de balayage + léger scintillement, sans gêner les clics. */
+.main::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  border-radius: inherit;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.14) 0 1px,
+    transparent 1px 3px
+  );
+  animation: flicker 6s linear infinite;
+}
+
+/* Bande claire qui descend lentement, comme sur un vieux tube. */
+.main::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(180deg, transparent, rgba(239, 230, 210, 0.035), transparent) 0 -140px / 100% 140px
+    no-repeat;
+  animation: roll-bar 8s linear 1s infinite;
+}
+
+.menuToggle {
+  display: none;
+}
+
+@keyframes crt-on {
+  0% {
+    transform: scale(0.6, 0.004);
+    filter: brightness(4);
+  }
+  35% {
+    transform: scale(1, 0.004);
+    filter: brightness(4);
+  }
+  70% {
+    transform: scale(1, 1);
+    filter: brightness(1.6);
+  }
+  100% {
+    transform: none;
+    filter: none;
+  }
+}
+
+@keyframes flicker {
+  0%,
+  48%,
+  52%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.75;
+  }
+}
+
+@keyframes roll-bar {
+  from {
+    background-position: 0 -140px;
+  }
+  to {
+    background-position: 0 calc(100% + 140px);
+  }
+}
+
+@media (max-width: 768px) {
+  .menuToggle {
+    display: inline-flex;
+  }
+
+  .body {
+    padding: 22px 20px;
+  }
+
+  .main {
+    padding: 2.5rem 1.25rem 3rem;
+    border-radius: 18px / 14px;
+    box-shadow:
+      inset 0 0 50px rgba(0, 0, 0, 0.75),
+      0 0 0 8px #120c08,
+      0 0 0 10px #2a1d13;
+  }
+}

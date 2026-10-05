@@ -1,0 +1,98 @@
+/* Primitives pour `composes:` ; animations en longhands uniquement, un shorthand remettrait `animation-delay` à zéro. */
+
+.riseIn {
+  animation-name: rise-in;
+  animation-duration: 620ms;
+  animation-timing-function: var(--ease);
+  animation-fill-mode: both;
+}
+
+.wipeUp {
+  animation-name: wipe-up;
+  animation-duration: 760ms;
+  animation-timing-function: var(--ease);
+  animation-fill-mode: both;
+}
+
+/* Grille de cartes : jeux sur l'accueil, sections sur l'admin. */
+.cardGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(248px, 1fr));
+  gap: 1.35rem;
+}
+
+/* Primitives importées directement dans les `.tsx` (`page.denied`…), partagées par plusieurs pages. */
+
+/* Message d'une page réservée aux connectés. */
+.denied {
+  composes: riseIn;
+
+  max-width: 46ch;
+  font-size: 1.05rem;
+  font-weight: 300;
+  color: var(--ivory-dim);
+  animation-delay: 480ms;
+}
+
+/* Chargement, liste vide ou erreur à la place d'un contenu. */
+.state {
+  composes: riseIn;
+
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 300;
+  color: var(--ivory-dim);
+  animation-delay: 640ms;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.label {
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--card-ink-dim);
+}
+
+/* Champ texte des pages ; sa largeur reste à la page (`${page.input} ${s.input}`). */
+.input {
+  padding: 0.6rem 0.75rem;
+  font-family: inherit;
+  font-size: 0.92rem;
+  color: var(--ivory);
+  background: var(--panel);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  transition:
+    border-color 160ms ease,
+    background-color 160ms ease;
+}
+
+.input:hover {
+  border-color: rgba(239, 230, 210, 0.28);
+}
+
+.input:focus {
+  outline: none;
+  background: var(--panel-hi);
+  border-color: var(--accent-hot);
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+}
+
+@keyframes wipe-up {
+  from {
+    opacity: 0;
+    clip-path: inset(100% -0.12em -0.3em -0.12em);
+    transform: translateY(0.16em);
+  }
+}

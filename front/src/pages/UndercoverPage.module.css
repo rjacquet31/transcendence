@@ -1,0 +1,111 @@
+/* La table prend la place, le chat garde une largeur fixe à côté. Sous 1000 px,
+   le chat passe sous la table. */
+.matchLayout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: 1.6rem;
+  align-items: start;
+}
+
+.lobby {
+  composes: cardGrid from '../style/page.module.css';
+}
+
+.card {
+  composes: riseIn from '../style/page.module.css';
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.9rem;
+  padding: 1.25rem;
+  background: var(--ink-800);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+}
+
+.lead {
+  margin: 0;
+  font-size: 0.92rem;
+  color: var(--card-ink-dim);
+}
+
+.hint {
+  margin: 0;
+  font-size: 0.85rem;
+  font-weight: 300;
+  color: var(--mute);
+}
+
+.joinForm {
+  display: flex;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.codeInput {
+  composes: input from '../style/dialog.module.css';
+
+  font-family: var(--font-mono);
+  font-size: 1.1rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+
+.rules {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  margin: 0;
+  padding-left: 1.1rem;
+  font-size: 0.88rem;
+  color: var(--card-ink-dim);
+}
+
+.stats {
+  display: flex;
+  gap: 2rem;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+.statValue {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  color: var(--bone);
+}
+
+.statLabel {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--mute);
+}
+
+.error {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 0 0 1rem;
+  padding: 0.5rem 0.5rem 0.5rem 0.8rem;
+  font-size: 0.88rem;
+  color: var(--red-bright);
+  background: rgba(228, 42, 49, 0.1);
+  border-left: 2px solid var(--red-bright);
+  border-radius: 0 var(--radius) var(--radius) 0;
+
+  --btn-padding: 0.2rem 0.45rem;
+  --btn-font-size: 0.8rem;
+}
+
+@media (max-width: 1000px) {
+  .matchLayout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

@@ -1,0 +1,42 @@
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 1.15rem 1.5rem;
+  animation: footer-in 500ms var(--ease) 1.2s backwards;
+}
+
+.copy {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--ivory-dim);
+}
+
+/* Liens légaux : pas de fond au survol, soulignement moutarde, le tout via le contrat Button. */
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+
+  --btn-padding: 0.35rem 0.6rem;
+  --btn-font-size: 0.82rem;
+  --btn-weight: 400;
+  --btn-ghost-bg-hover: transparent;
+  --btn-underline: 1;
+}
+
+@keyframes footer-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+@media (max-width: 768px) {
+  .footer {
+    justify-content: flex-start;
+  }
+}

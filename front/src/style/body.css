@@ -1,0 +1,83 @@
+* {
+  box-sizing: border-box;
+}
+
+/* Le cabinet : bois veiné, éclairé par le haut. */
+body {
+  margin: 0;
+  color: var(--ivory);
+  background-color: var(--wood-dark);
+  background-image:
+    repeating-linear-gradient(
+      92deg,
+      rgba(0, 0, 0, 0.12) 0 2px,
+      transparent 2px 9px,
+      rgba(255, 220, 170, 0.025) 9px 11px,
+      transparent 11px 23px
+    ),
+    linear-gradient(180deg, var(--wood) 0%, var(--wood-dark) 70%);
+  background-attachment: fixed;
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Lumière chaude des ampoules de l'enseigne, qui respire lentement. */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(90% 50% at 50% -14%, rgba(217, 164, 65, 0.1), transparent 64%);
+  animation:
+    lamp-up 1200ms var(--ease) both,
+    lamp-breathe 9s ease-in-out 1200ms infinite;
+}
+
+@keyframes lamp-up {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes lamp-breathe {
+  50% {
+    opacity: 0.6;
+  }
+}
+
+/* Utilitaire global : texte réservé aux lecteurs d'écran, hors module pour servir sans import. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Anneau de focus par défaut. Un composant peut le recolorer localement. */
+:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+::selection {
+  color: var(--wood-dark);
+  background: var(--accent);
+}
+
+/* Coupe-circuit global des animations ; les ajustements propres à un composant restent dans son module. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+  }
+}

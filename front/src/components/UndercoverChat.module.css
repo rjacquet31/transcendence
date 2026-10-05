@@ -1,0 +1,76 @@
+.panel {
+  composes: riseIn from '../style/page.module.css';
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  padding: 1.1rem;
+  background: var(--ink-800);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  animation-delay: 120ms;
+}
+
+.blockTitle {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--mute);
+}
+
+/* Hauteur bornée : une longue discussion fait défiler la liste, pas la page. */
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  height: min(52vh, 440px);
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+  list-style: none;
+}
+
+.message {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  padding: 0.45rem 0.6rem;
+  background: var(--ink-900);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.mine {
+  border-color: rgba(228, 42, 49, 0.45);
+}
+
+.author {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  color: var(--card-ink-dim);
+}
+
+.text {
+  font-size: 0.9rem;
+  color: var(--bone);
+  overflow-wrap: anywhere;
+}
+
+.empty {
+  margin: 0;
+  font-size: 0.82rem;
+  font-weight: 300;
+  color: var(--mute);
+}
+
+.form {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.input {
+  composes: input from '../style/dialog.module.css';
+}

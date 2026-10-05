@@ -1,0 +1,78 @@
+/* Propre à la modale A2F : sa largeur, le QR code et le secret. */
+
+.dialog {
+  composes: shell from '../style/dialog.module.css';
+
+  width: min(400px, calc(100vw - 2rem));
+  max-height: calc(100vh - 3rem);
+  padding: 1.6rem 1.5rem 1.5rem;
+  overflow: auto;
+}
+
+.head {
+  composes: head from '../style/dialog.module.css';
+
+  margin-bottom: 1.2rem;
+}
+
+.title {
+  composes: title from '../style/dialog.module.css';
+
+  margin: 0;
+  font-size: 1.4rem;
+}
+
+.form {
+  composes: form from '../style/dialog.module.css';
+}
+
+.field {
+  composes: field from '../style/dialog.module.css';
+}
+
+.label {
+  composes: label from '../style/dialog.module.css';
+}
+
+.input {
+  composes: input from '../style/dialog.module.css';
+
+  font-family: var(--font-mono);
+  letter-spacing: 0.3em;
+}
+
+.text {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 300;
+  line-height: 1.5;
+  color: var(--ivory-dim);
+}
+
+/* Le PNG du back est noir sur blanc : on garde le fond blanc pour qu'il reste scannable. */
+.qr {
+  align-self: center;
+  width: 200px;
+  height: 200px;
+  background: #fff;
+  border-radius: var(--radius);
+}
+
+.secret {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--ivory);
+  word-break: break-all;
+}
+
+.globalError {
+  composes: globalError from '../style/dialog.module.css';
+
+  margin: 0;
+}
+
+.actions {
+  composes: actions from '../style/dialog.module.css';
+
+  margin-top: 0.4rem;
+}

@@ -1,0 +1,110 @@
+# ==========================================
+# Builds & Dépendances
+# ==========================================
+target/
+build/
+bin/
+dist/
+nbbuild/
+nbdist/
+node_modules/
+bower_components/
+.vite/
+
+!**/src/main/**/target/
+!**/src/test/**/target/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+# Maven Wrapper (inclure le JAR)
+.mvn/wrapper/maven-wrapper.jar
+!/.mvn/wrapper/maven-wrapper.jar
+
+# ==========================================
+# Java & Archives
+# ==========================================
+*.class
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+*.ctxt
+.mtj.tmp/
+hs_err_pid*
+replay_pid*
+
+# ==========================================
+# IDEs & Éditeurs de code
+# ==========================================
+
+# Eclipse / STS
+.apt_generated/
+.classpath
+.factorypath
+.project
+.settings/
+.springBeans
+.sts4-cache
+
+# IntelliJ IDEA
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# NetBeans
+/nbproject/private/
+/.nb-gradle/
+
+# VS Code
+.vscode/
+
+# Sublime Text
+*.sublime*
+
+# ==========================================
+# Logs & Fichiers temporaires
+# ==========================================
+*.log
+logs/
+.DS_Store
+.DS_*
+**/*.backup.*
+**/*.back.*
+HELP.md
+
+# ==========================================
+# Git & Conflits de merge
+# ==========================================
+*.orig
+*.BACKUP.*
+*.BASE.*
+*.LOCAL.*
+*.REMOTE.*
+*_BACKUP_*.txt
+*_BASE_*.txt
+*_LOCAL_*.txt
+*_REMOTE_*.txt
+
+# ==========================================
+# Fichiers de design
+# ==========================================
+*.psd
+*.sketch
+thumb
+
+# ==========================================
+# Variables d'environnement
+# ==========================================
+.env
+
+.pids/
+cookies*
+
+# ==========================================
+# Fichiers uploadés par les utilisateurs
+# ==========================================
+backend/uploads/

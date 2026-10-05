@@ -1,0 +1,184 @@
+/* Mini-borne : façade bordeaux, écran à lignes de balayage, bouton moutarde, ombre dure. */
+.card {
+  /* Contrat Button : sur le bordeaux, le secondaire reste ivoire. */
+  --btn-secondary-color: var(--card-ink);
+  --btn-secondary-bg: transparent;
+  --btn-secondary-border: rgba(239, 230, 210, 0.3);
+  --btn-secondary-color-hover: var(--wood-dark);
+  --btn-secondary-bg-hover: var(--accent);
+  --btn-secondary-border-hover: var(--accent);
+  --btn-padding: 0.85rem 1rem;
+  --btn-font-size: 1rem;
+
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 1.1rem 1.25rem;
+  color: var(--card-ink);
+  background: var(--card);
+  border-radius: var(--radius-card) var(--radius-card) 8px 8px;
+  box-shadow:
+    inset 0 0 0 2px var(--bordeaux-deep),
+    6px 6px 0 var(--wood-dark);
+  transition:
+    transform 240ms var(--ease-snap),
+    box-shadow 240ms var(--ease);
+  animation: cabinet-drop 700ms var(--ease-snap) backwards;
+}
+
+/* Les bornes tombent l'une après l'autre. */
+.card:nth-child(1) {
+  animation-delay: 1500ms;
+}
+
+.card:nth-child(2) {
+  animation-delay: 1620ms;
+}
+
+.card:nth-child(3) {
+  animation-delay: 1740ms;
+}
+
+.card:hover,
+.card:focus-within {
+  transform: translate(-4px, -6px);
+  box-shadow:
+    inset 0 0 0 2px var(--bordeaux-deep),
+    12px 14px 0 var(--wood-dark);
+}
+
+/* L'écran de la borne, qui encadre l'icône du jeu. */
+.icon {
+  position: relative;
+  display: grid;
+  place-items: center;
+  height: 140px;
+  font-size: 3.2rem;
+  line-height: 1;
+  border-radius: 12px / 10px;
+  background:
+    repeating-linear-gradient(to bottom, rgba(0, 0, 0, 0.25) 0 1px, transparent 1px 3px),
+    radial-gradient(ellipse at 50% 45%, #2e241d, var(--screen) 75%);
+  box-shadow:
+    inset 0 0 0 4px #120c08,
+    inset 0 0 30px rgba(0, 0, 0, 0.8);
+  overflow: hidden;
+}
+
+/* Icône ivoire avec ombre bordeaux pleine ; elle saute via le rembourrage (pas un transform) pour garder l'écran immobile. */
+.icon {
+  filter: drop-shadow(4px 4px 0 var(--bordeaux));
+}
+
+.title {
+  margin: 1rem 0 0.4rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.45rem;
+  line-height: 1.1;
+  color: var(--card-ink);
+  transition: color 200ms ease;
+}
+
+.card:hover .title {
+  color: var(--accent-bright);
+}
+
+.desc {
+  margin: 0 0 1rem;
+  font-size: 0.92rem;
+  color: var(--card-ink-dim);
+}
+
+.online {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 0 1.1rem;
+  font-size: 0.85rem;
+  color: var(--card-ink-dim);
+}
+
+.online::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--card-ink-dim);
+  animation: blink 2s steps(1) infinite;
+}
+
+/* Au moins un joueur connecté : la pastille passe au vert et respire. */
+.isLive {
+  color: var(--card-ink);
+}
+
+.isLive::before {
+  background: var(--live);
+  box-shadow: 0 0 0 3px rgba(143, 191, 106, 0.2);
+  animation: live-pulse 2.4s var(--ease) infinite;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: auto;
+}
+
+.card :focus-visible {
+  outline-color: var(--accent-bright);
+}
+
+@keyframes cabinet-drop {
+  0% {
+    opacity: 0;
+    transform: translateY(-60px);
+  }
+  60% {
+    opacity: 1;
+  }
+}
+
+@keyframes knight-hop {
+  0%,
+  60%,
+  100% {
+    padding: 0;
+  }
+  15% {
+    padding: 0 0 36px;
+  }
+  30% {
+    padding: 0 0 72px;
+  }
+  42% {
+    padding: 0 0 72px 52px;
+  }
+  54% {
+    padding: 0 0 0 52px;
+  }
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes live-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 3px rgba(143, 191, 106, 0.2);
+  }
+
+  50% {
+    box-shadow: 0 0 0 6px rgba(143, 191, 106, 0.04);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card:hover,
+  .card:focus-within {
+    transform: none;
+  }
+}

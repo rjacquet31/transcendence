@@ -1,0 +1,22 @@
+.image {
+  flex: none;
+  object-fit: cover;
+  background: var(--panel-hi);
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+}
+
+.fallback {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--ivory-dim);
+  background: var(--panel-hi);
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  user-select: none;
+}

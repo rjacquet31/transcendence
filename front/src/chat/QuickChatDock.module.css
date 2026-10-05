@@ -1,0 +1,126 @@
+.dock {
+  position: fixed;
+  right: 1rem;
+  bottom: 0;
+  z-index: 80;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: flex-end;
+  gap: 0.75rem;
+  pointer-events: none;
+}
+
+.window {
+  display: flex;
+  flex-direction: column;
+  width: 20rem;
+  max-width: calc(100vw - 2rem);
+  height: 24rem;
+  max-height: calc(100vh - 4rem);
+  overflow: hidden;
+  background: var(--panel);
+  border: 1px solid var(--line-strong);
+  border-bottom: none;
+  border-radius: var(--radius) var(--radius) 0 0;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+  pointer-events: auto;
+}
+
+.windowMinimized {
+  height: auto;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.45rem 0.5rem 0.45rem 0.7rem;
+  background: var(--panel-hi);
+  border-bottom: 1px solid var(--line-strong);
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex: 1;
+  min-width: 0;
+  padding: 0;
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-align: left;
+  color: var(--ivory);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.titleText {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.badge {
+  flex: none;
+  min-width: 1.25rem;
+  padding: 0 0.35rem;
+  font-size: 0.7rem;
+  line-height: 1.25rem;
+  text-align: center;
+  color: var(--wood-dark);
+  background: var(--accent-hot);
+  border-radius: 999px;
+}
+
+.headerActions {
+  display: flex;
+  flex: none;
+  gap: 0.15rem;
+}
+
+.iconButton {
+  width: 1.6rem;
+  height: 1.6rem;
+  font-family: inherit;
+  font-size: 0.9rem;
+  line-height: 1;
+  color: var(--ivory-dim);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition:
+    color 160ms ease,
+    border-color 160ms ease,
+    background-color 160ms ease;
+}
+
+.iconButton:hover {
+  color: var(--ivory);
+  background: var(--panel);
+  border-color: var(--line-strong);
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  padding: 0.6rem;
+}
+
+@media (max-width: 40rem) {
+  .dock {
+    right: 0.5rem;
+    left: 0.5rem;
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+
+  .window {
+    width: auto;
+  }
+}

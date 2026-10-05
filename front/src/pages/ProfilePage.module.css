@@ -1,0 +1,134 @@
+.section {
+  margin-top: 3rem;
+}
+
+.section:first-of-type {
+  margin-top: 1.5rem;
+}
+
+.avatarForm {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  align-items: flex-start;
+}
+
+.avatar {
+  width: 96px;
+  height: 96px;
+  object-fit: cover;
+  background: var(--panel);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-card);
+}
+
+.avatarControls {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: flex-start;
+
+  --btn-padding: 0.5rem 1rem;
+  --btn-font-size: 0.85rem;
+}
+
+.fileLabel {
+  display: inline-block;
+  max-width: 20rem;
+  padding: 0.5rem 0.85rem;
+  overflow: hidden;
+  font-size: 0.85rem;
+  color: var(--ivory);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
+  background: var(--panel);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  transition: border-color 160ms ease;
+}
+
+.fileLabel:hover {
+  border-color: rgba(239, 230, 210, 0.28);
+}
+
+.fileInput {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.fileInput:focus-visible + * {
+  outline: 2px solid var(--accent-hot);
+  outline-offset: 2px;
+}
+
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  max-width: 26rem;
+}
+
+.input {
+  width: 100%;
+}
+
+.inputError {
+  border-color: var(--danger);
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 0.4rem;
+
+  --btn-padding: 0.6rem 1.2rem;
+  --btn-font-size: 0.9rem;
+}
+
+/* --- Sécurité (A2F) --- */
+
+.twoFactorActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 0.8rem;
+
+  --btn-padding: 0.6rem 1.2rem;
+  --btn-font-size: 0.9rem;
+}
+
+/* --- Compte 42 --- */
+
+.linkActions {
+  composes: twoFactorActions;
+}
+
+/* --- États partagés --- */
+
+.hint {
+  margin: 0;
+  font-size: 0.8rem;
+  font-weight: 300;
+  color: var(--ivory-dim);
+}
+
+.error {
+  margin: 0.2rem 0 0;
+  font-size: 0.85rem;
+  color: var(--danger);
+}
+
+.notice {
+  margin: 0.2rem 0 0;
+  font-size: 0.85rem;
+  color: var(--live);
+}

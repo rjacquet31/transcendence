@@ -1,0 +1,166 @@
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: 1.6rem;
+  align-items: start;
+}
+
+.panel {
+  composes: riseIn from '../style/page.module.css';
+
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  padding: 1.25rem;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  animation-delay: 120ms;
+}
+
+.players {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+/* Deux lignes par joueur : son nom, puis ce qu'il a pris. */
+.player {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding-bottom: 0.55rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.playerLine {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin: 0;
+}
+
+.player:last-child {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.side {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ivory-dim);
+}
+
+.name {
+  font-weight: 500;
+  color: var(--ivory);
+}
+
+.turn {
+  margin: 0;
+  padding: 0.55rem 0.7rem;
+  background: rgba(217, 164, 65, 0.12);
+  border-left: 2px solid var(--accent-hot);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  font-size: 0.9rem;
+  color: var(--ivory);
+}
+
+.over {
+  margin: 0;
+  padding: 0.7rem;
+  background: var(--accent-hot);
+  border-radius: var(--radius);
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  text-align: center;
+  color: var(--wood-dark);
+  box-shadow: 0 4px 0 var(--accent-deep);
+  animation: over-in 500ms var(--ease-snap) both;
+}
+
+.blockTitle {
+  margin: 0 0 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ivory-dim);
+}
+
+.empty {
+  margin: 0;
+  font-size: 0.85rem;
+  font-weight: 300;
+  color: var(--ivory-dim);
+}
+
+.moveList {
+  max-height: 210px;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+  list-style: none;
+}
+
+.round {
+  display: grid;
+  grid-template-columns: 2.2rem 1fr 1fr;
+  gap: 0.4rem;
+  padding: 0.22rem 0;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--ivory);
+}
+
+.round:nth-child(odd) {
+  background: rgba(239, 230, 210, 0.03);
+}
+
+.roundNumber {
+  color: var(--ivory-dim);
+}
+
+.fenValue {
+  display: block;
+  padding: 0.5rem 0.6rem;
+  background: var(--wood-dark);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  line-height: 1.5;
+  color: var(--card-ink-dim);
+  overflow-wrap: anywhere;
+  user-select: all;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: auto;
+}
+
+.hint {
+  margin: 0.2rem 0 0;
+  font-size: 0.76rem;
+  font-weight: 300;
+  color: var(--ivory-dim);
+}
+
+@media (max-width: 1000px) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@keyframes over-in {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+}

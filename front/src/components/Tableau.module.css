@@ -1,0 +1,51 @@
+/* Tableau de données : même matière que les cartes (`--card`) mais à plat, scroller horizontal pour le mobile. */
+
+.scroller {
+  composes: riseIn from '../style/page.module.css';
+
+  overflow-x: auto;
+  background: var(--card);
+  border-radius: var(--radius-card);
+  box-shadow:
+    inset 0 0 0 1px var(--card-line),
+    0 16px 30px -20px rgba(0, 0, 0, 1);
+  animation-delay: 700ms;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  color: var(--card-ink);
+}
+
+.th {
+  padding: 0.9rem 1.1rem;
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-align: left;
+  white-space: nowrap;
+  color: var(--card-ink-dim);
+  border-bottom: 1px solid var(--card-line);
+}
+
+.tr:nth-child(even) {
+  background: rgba(239, 230, 210, 0.03);
+}
+
+.td {
+  padding: 0.85rem 1.1rem;
+  font-weight: 300;
+  white-space: nowrap;
+  border-bottom: 1px solid var(--line);
+}
+
+.empty {
+  padding: 1.6rem 1.1rem;
+  font-weight: 300;
+  text-align: center;
+  color: var(--card-ink-dim);
+}
